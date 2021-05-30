@@ -16,7 +16,10 @@ export const checkCurrentUser = (payload) => {
       const { user } = getState();
       const userInfo = await getCurrentUserInfo();
       console.log({ userInfo, user });
-      if (!userInfo) return;
+      if (!userInfo) {
+        dispatch(setLoader(false));
+        return;
+      }
       if (!user || user.id !== userInfo.username) {
         console.log(userInfo.username);
         const result = await execGQL(getUserById, {

@@ -43,7 +43,7 @@ function CourseView({ user, course: { selectedCourse }, dispatch }) {
   };
 
   const onVideoView = (index) => {
-    if (!isSubscribed) {
+    if (role === USER_ROLE.STUDENT && !isSubscribed) {
       toast({
         title: `Subscribe to view the content`,
         position: "top",
